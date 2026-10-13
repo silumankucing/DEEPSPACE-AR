@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="false"
+    android:background="?android:attr/colorBackground">
+
+        <!-- Header Segment: Blue background with centered DEEPSPACE text and Setting icon -->
+    <android.widget.FrameLayout
+        android:id="@+id/headerSegment"
+        android:layout_width="match_parent"
+                android:layout_height="120dp"
+        android:background="@color/blue_dark_primary"
+        android:elevation="4dp"
+        android:paddingTop="32dp">
+
+                                <!-- Logo - kiri, sejajar dengan konten menu -->
+                <ImageView
+                    android:id="@+id/imgLogo"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/deepspace"
+                    android:scaleType="fitCenter"
+                    app:tint="@color/white"
+                    android:contentDescription="Logo"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="28dp" />
+
+                <!-- Text DEEPSPACE - center -->
+                <TextView
+                    android:id="@+id/txtAppName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_header_title"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/jaturat"
+                    android:layout_gravity="center" />
+        <android.widget.ImageView
+            android:id="@+id/btnHamburgerMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_hamburger_menu"
+            android:scaleType="fitCenter"
+            android:contentDescription="Menu"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="4dp"
+                        android:layout_marginEnd="30dp"
+            android:layout_gravity="end|center_vertical" />
+
+    </android.widget.FrameLayout>
+
+    <ScrollView
+        android:id="@+id/scrollViewHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:paddingTop="24dp">
+
+            <!-- Tombol AR -->
+            <android.widget.LinearLayout
+                android:id="@+id/btnAR"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginHorizontal="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_menu_button_blue"
+                android:clickable="true"
+                android:focusable="true"
+                android:stateListAnimator="@animator/scale_anim"
+                android:elevation="6dp"
+                android:layout_marginBottom="12dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp">
+
+                                <android.widget.ImageView
+                    android:id="@+id/iconAR"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/menu_ar"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="AR" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/ar_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/jaturat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="sans-serif" />
+
+            </android.widget.LinearLayout>
+
+            <!-- Tombol Library -->
+            <android.widget.LinearLayout
+                android:id="@+id/btnLibrary"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginHorizontal="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_menu_button_blue"
+                android:clickable="true"
+                android:focusable="true"
+                android:stateListAnimator="@animator/scale_anim"
+                android:elevation="6dp"
+                android:layout_marginBottom="12dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp">
+
+                                <android.widget.ImageView
+                    android:id="@+id/iconLibrary"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/menu_library"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Library" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/explore_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/jaturat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="sans-serif" />
+
+            </android.widget.LinearLayout>
+
+            <!-- Tombol Project -->
+            <android.widget.LinearLayout
+                android:id="@+id/btnProject"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginHorizontal="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_menu_button_blue"
+                android:clickable="true"
+                android:focusable="true"
+                android:stateListAnimator="@animator/scale_anim"
+                android:elevation="6dp"
+                android:layout_marginBottom="12dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp">
+
+                                <android.widget.ImageView
+                    android:id="@+id/iconProject"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/menu_project"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Project" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/project_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/jaturat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="sans-serif" />
+
+            </android.widget.LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

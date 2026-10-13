@@ -1,0 +1,94 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Deepspace" parent="Theme.MaterialComponents.Light.NoActionBar">
+                    <item name="colorPrimary">@color/blue_dark_primary</item>
+                    <item name="colorPrimaryVariant">@color/blue_dark_primary_variant</item>
+                    <item name="colorOnPrimary">@color/white</item>
+                    <item name="colorSecondary">@color/blue_dark_secondary</item>
+                    <item name="colorSecondaryVariant">@color/blue_dark_secondary_variant</item>
+                    <item name="colorOnSecondary">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+                    <item name="android:fontFamily">@font/jaturat</item>
+                    <item name="fontFamily">@font/jaturat</item>
+                    <item name="materialButtonStyle">@style/Widget.Deepspace.MaterialButton</item>
+                    <item name="navigationViewStyle">@style/Widget.Deepspace.NavigationView</item>
+                    <item name="android:textViewStyle">@style/Widget.Deepspace.TextView</item>
+                                        <item name="android:buttonStyle">@style/Widget.Deepspace.Button</item>
+                                        <!-- STATUS BAR: Set to transparent, disable contrast enforcement, JANGAN dark! -->
+                                        <item name="android:statusBarColor">@android:color/transparent</item>
+                                        <!-- android:enforceStatusBarContrast hanya dipakai mulai API 29;
+                                             di API lama attribute ini diabaikan framework, jadi aman. -->
+                                        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
+                                        <item name="android:windowLightStatusBar">false</item>
+                                        <!-- NAVIGATION BAR: Set to transparent, disable contrast enforcement -->
+                                        <item name="android:navigationBarColor">@android:color/transparent</item>
+                                        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+                                        <!-- WINDOW: NO fullscreen di theme, biarkan code handle! CRITICAL - jangan true! -->
+                                        <item name="android:windowBackground">@android:color/transparent</item>
+                                        <item name="android:windowFullscreen">false</item>
+                                        <item name="android:windowNoTitle">true</item>
+                                        <item name="android:windowActionBar">false</item>
+                                        <item name="android:fitsSystemWindows">false</item>
+                </style>
+
+    <style name="ThemeOverlay.Deepspace.PopupMenu" parent="ThemeOverlay.AppCompat.Light">
+        <item name="popupMenuStyle">@style/Widget.Deepspace.PopupMenu</item>
+        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.Deepspace.PopupMenu</item>
+        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.Deepspace.PopupMenu</item>
+    </style>
+
+    <style name="Widget.Deepspace.PopupMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@android:color/white</item>
+    </style>
+
+    <style name="Widget.Deepspace.MaterialButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:fontFamily">@font/jaturat</item>
+        <item name="fontFamily">@font/jaturat</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+        <style name="Widget.Deepspace.NavigationView" parent="Widget.MaterialComponents.NavigationView">
+        <item name="itemTextAppearance">@style/TextAppearance.Deepspace.NavigationItem</item>
+        <item name="itemVerticalPadding">2dp</item>
+    </style>
+
+        <style name="TextAppearance.Deepspace.NavigationItem" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">@font/jaturat</item>
+        <item name="fontFamily">@font/jaturat</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Widget.Deepspace.TextView" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/jaturat</item>
+        <item name="fontFamily">@font/jaturat</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.Deepspace.Button" parent="Widget.AppCompat.Button">
+        <item name="android:fontFamily">@font/jaturat</item>
+        <item name="fontFamily">@font/jaturat</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.Deepspace.PopupMenu" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/jaturat</item>
+        <item name="fontFamily">@font/jaturat</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+        <style name="TextAppearance.Deepspace.Tab" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/jaturat</item>
+        <item name="fontFamily">@font/jaturat</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="Widget.Deepspace.DrawerLayout" parent="">
+        <item name="android:fitsSystemWindows">false</item>
+    </style>
+</resources>
+

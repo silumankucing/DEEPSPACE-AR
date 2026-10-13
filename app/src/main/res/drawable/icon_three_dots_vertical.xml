@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Tiga garis horizontal bertumpuk (hamburger icon) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M5,6h14v2H5V6zM5,11h14v2H5V11zM5,16h14v2H5V16z"/>
+</vector>
+

@@ -1,0 +1,15 @@
+{
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "files.watcherExclude": {
+        "**/build": true,
+        "**/.gradle": true
+    },
+    "search.exclude": {
+        "**/build": true,
+        "**/.gradle": true
+    },
+    "Codegeex.GenerationPreference": "automatic",
+    "Codegeex.Chat.LanguagePreference": "中文",
+    "Codegeex.Comment.LanguagePreference": "中文",
+    "Codegeex.SidebarUI.LanguagePreference": "English"
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ukuran NavigationView landscape: atur jarak antar item agar fit tanpa scroll -->
+    <dimen name="design_navigation_icon_size">16dp</dimen>
+    <dimen name="design_navigation_item_icon_padding">2dp</dimen>
+    <dimen name="design_navigation_item_padding">0dp</dimen>
+</resources>

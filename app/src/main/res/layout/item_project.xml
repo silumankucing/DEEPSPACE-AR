@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:strokeColor="@color/grey"
+    app:strokeWidth="0.5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Thumbnail -->
+        <ImageView
+            android:id="@+id/itemThumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:contentDescription="Project Thumbnail"
+            android:scaleType="centerCrop"
+            android:background="@color/grey" />
+
+        <!-- Spacer -->
+        <Space
+            android:layout_width="1dp"
+            android:layout_height="8dp" />
+
+        <!-- Project Name + Edit button row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/itemProjectName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/jaturat"
+                android:text="Project Name"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <!-- Tombol Edit: lingkaran kecil dengan tiga garis vertikal -->
+        <ImageButton
+            android:id="@+id/itemMenuButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="Edit"
+                android:background="@drawable/circle_button_bg"
+                android:scaleType="center"
+                android:padding="8dp"
+                android:src="@drawable/icon_three_dots_vertical"
+            android:rotation="0" />
+
+    </LinearLayout>
+
+        <!-- Hidden legacy buttons (retained for compatibility) -->
+        <ImageButton
+            android:id="@+id/btnRename"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+        <ImageButton
+            android:id="@+id/btnShare"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

@@ -1,0 +1,137 @@
+<resources>
+    <string name="app_name">DEEPSPACE AR</string>
+    <!-- Judul header halaman Home (tetap nama pendek agar tidak menabrak logo/hamburger) -->
+    <string name="home_header_title">DEEPSPACE</string>
+    <string name="get_started">LET\'S START</string>
+    <string name="xr">AR Studio</string>
+    <string name="library">Project</string>
+    <string name="menu">Menu</string>
+    <string name="settings_menu">Settings Menu</string>
+    <string name="settings_general">General</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_about">About</string>
+    <string name="settings_page_title">Settings</string>
+    <string name="drawer_xr">Augmented Reality</string>
+    <string name="drawer_library">Explore</string>
+    <string name="drawer_project">Project</string>
+    <string name="drawer_setting">Setting</string>
+    <string name="ar_menu_anchor">Lock</string>
+    <string name="loading_model">Loading Model...</string>
+    <string name="model_loaded">Model loaded</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_save_project">Save Project</string>
+    <string name="project_save_failed">Failed to save project</string>
+
+    <!-- Settings Menu -->
+    <string name="settings">Settings</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="learning">Learning</string>
+    <string name="share_apps">Share Apps</string>
+    <string name="feedback">Feedback</string>
+    <string name="report_bug">Report Bug</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="about">About</string>
+
+    <!-- General Settings -->
+    <string name="apps_settings">Apps Settings</string>
+    <string name="dark_mode">Dark Mode</string>
+    <!-- Item Orientation Mode (AR): dropdown Portrait/Landscape untuk halaman AR -->
+    <string name="orientation_mode">Orientation Mode (AR)</string>
+    <string name="orientation_portrait">Portrait</string>
+    <string name="orientation_landscape">Landscape</string>
+    <string name="performance_mode">Performance Mode</string>
+    <string name="auto_save">Auto-Save</string>
+    <string name="language">Language</string>
+    <string name="floor_grid">Floor Grid</string>
+    <string name="axis">Axis</string>
+    <string name="unit">Unit</string>
+
+    <!-- CAD Group -->
+    <string name="cad">CAD</string>
+    <string name="polygon">Polygon</string>
+
+    <!-- Home Screen -->
+    <string name="ar_title">AR</string>
+    <string name="explore_title">Explore</string>
+    <string name="project_title">Project</string>
+
+    <!-- Share dialog -->
+    <string name="share_to_friends">Share to your Friends</string>
+
+    <!-- Loading, Error -->
+    <string name="loading_model_dots">Loading model…</string>
+    <string name="failed_load_model">Failed to load model</string>
+    <string name="retry">Retry</string>
+
+    <!-- Explore catalog (metadata.json) -->
+    <string name="ok">OK</string>
+    <string name="error_title">Error</string>
+    <string name="explore_search_hint">Search 3D Models</string>
+    <string name="explore_error_network">Could not reach the Explore server. Please check your internet connection and try again.</string>
+    <string name="explore_error_server">The Explore server returned an error (HTTP %1$s).</string>
+    <string name="explore_error_parse">The Explore catalog (metadata.json) could not be read.</string>
+    <string name="explore_error_empty">The Explore catalog does not contain any models.</string>
+    <string name="explore_error_thumbnail">Some model thumbnails could not be loaded from the server.</string>
+    <string name="explore_error_download">Failed to download the model file from the server.</string>
+    <string name="explore_error_no_object">This model does not provide a downloadable 3D file.</string>
+    <string name="explore_error_folder">The model was downloaded but could not be saved to the selected folder.</string>
+    <!-- Popup "Download": menyimpan file 3D (bukan thumbnail) ke folder pilihan pengguna -->
+    <string name="explore_download_title">Download</string>
+    <string name="explore_download_confirm">Download</string>
+    <string name="explore_download_browse">Browse</string>
+    <string name="explore_download_file_label">File: %1$s</string>
+    <string name="explore_download_folder_none">Folder: not selected</string>
+    <string name="explore_download_folder_label">Folder: %1$s</string>
+    <string name="explore_download_pick_folder">Choose a destination folder first.</string>
+    <string name="explore_download_saved_file">Saved: %1$s</string>
+
+    <!-- Popup "Capture" halaman AR: pilih folder tujuan simpan hasil capture -->
+    <string name="capture_title">Capture</string>
+    <string name="capture_confirm">Capture</string>
+    <string name="capture_browse">Browse</string>
+    <string name="capture_saved_file">Saved: %1$s</string>
+    <string name="capture_folder_failed">The capture could not be saved to the selected folder.</string>
+
+    <!-- Lighting panel -->
+    <string name="lighting_controls">Lighting Controls</string>
+    <string name="shadow">Shadow</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+
+    <!-- Document menu -->
+    <string name="add_object">Add Object:</string>
+    <string name="local">Local</string>
+    <string name="explore">Explore</string>
+
+    <!-- Toast -->
+    <string name="performance_on">Performance Mode: ON</string>
+    <string name="performance_off">Performance Mode: OFF</string>
+    <string name="no_email_app">No email app found</string>
+    <string name="no_browser">Cannot open browser</string>
+    <string name="app_not_installed">%s not installed</string>
+
+    <!-- Email subjects -->
+    <string name="feedback_subject">Feedback - DeepSpace</string>
+    <string name="bug_subject">Bug Report - DeepSpace</string>
+    <string name="feedback_body">Please share your feedback:\n\n</string>
+    <string name="bug_body">Please describe the bug:\n\n</string>
+
+        <string-array name="languages">
+        <item>English</item>
+        <item>Indonesian</item>
+    </string-array>
+
+    <string-array name="unit_options">
+        <item>mm</item>
+        <item>cm</item>
+        <item>m</item>
+        <item>inch</item>
+    </string-array>
+
+    <!-- Opsi orientasi halaman AR: index 0 = Portrait, 1 = Landscape -->
+    <string-array name="orientation_options">
+        <item>Portrait</item>
+        <item>Landscape</item>
+    </string-array>
+</resources>
+

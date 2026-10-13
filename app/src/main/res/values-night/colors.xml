@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Scrim overlay versi dark: abu-abu gelap semi transparan, bukan putih -->
+    <color name="scrim_overlay">#CC1A1A1A</color>
+</resources>

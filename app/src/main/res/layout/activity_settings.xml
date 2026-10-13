@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:background="?android:attr/colorBackground">
+
+    <!-- Menu Utama -->
+    <ScrollView
+        android:id="@+id/menuContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="visible"
+        android:paddingTop="35dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/txtSettingsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jaturat"
+                android:gravity="center"
+                android:text="@string/settings"
+                                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <!-- Garis biru 2/3 lebar layar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:weightSum="3">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:background="@color/blue_dark_primary"
+                    android:layout_weight="2" />
+
+            </LinearLayout>
+
+            <!-- Menu List: dibungkus kolom 60% yang di-center supaya masing-masing item
+                 tidak terlalu lebar ketika halaman Setting dikunci landscape.
+                 Pola weightSum sama seperti garis biru di atas. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                <!-- Item pindahan halaman General Settings (halaman terpisah dihapus):
+                     Dark Mode, Brightness, Language, dan Orientation Mode kini tampil
+                     langsung di daftar Setting, di atas Learning. -->
+
+                <!-- Dark Mode -->
+                <LinearLayout
+                    android:id="@+id/darkModeContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/jaturat"
+                        android:text="@string/dark_mode"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/darkModeToggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/grey" />
+
+                <!-- Language -->
+                <LinearLayout
+                    android:id="@+id/languageContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/jaturat"
+                        android:text="@string/language"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp" />
+                    <Spinner
+                        android:id="@+id/languageSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="120dp"
+                        android:entries="@array/languages"
+                        android:spinnerMode="dropdown"
+                        android:backgroundTint="@color/blue_dark_primary" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/grey" />
+
+                <!-- Orientation Mode (AR): dropdown Portrait/Landscape yang dipakai halaman AR. -->
+                <LinearLayout
+                    android:id="@+id/orientationContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="16dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/jaturat"
+                        android:text="@string/orientation_mode"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp" />
+                    <Spinner
+                        android:id="@+id/orientationSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="120dp"
+                        android:entries="@array/orientation_options"
+                        android:spinnerMode="dropdown"
+                        android:backgroundTint="@color/blue_dark_primary" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/grey" />
+
+                <!-- Learn -->
+                <LinearLayout
+                    android:id="@+id/menuLearning"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/jaturat"
+                        android:text="@string/learning"
+                                                android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/jaturat"
+                        android:text=">"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/grey" />
+
+                <!-- Share Apps -->
+                <LinearLayout
+                    android:id="@+id/menuShareApps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/jaturat"
+                        android:text="@string/share_apps"
+                                                android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/jaturat"
+                        android:text=">"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/grey" />
+
+                <!-- Feedback -->
+                <LinearLayout
+                    android:id="@+id/menuFeedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/jaturat"
+                        android:text="@string/feedback"
+                                                android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/jaturat"
+                        android:text=">"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/grey" />
+
+                <!-- Report Bug -->
+                <LinearLayout
+                    android:id="@+id/menuReportBug"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/jaturat"
+                        android:text="@string/report_bug"
+                                                android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/jaturat"
+                        android:text=">"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/grey" />
+
+                <!-- Privacy Policy -->
+                <LinearLayout
+                    android:id="@+id/menuPrivacyPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/jaturat"
+                        android:text="@string/privacy_policy"
+                                                android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/jaturat"
+                        android:text=">"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/grey" />
+
+                <!-- About -->
+                <LinearLayout
+                    android:id="@+id/menuAbout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/jaturat"
+                        android:text="@string/about"
+                                                android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/jaturat"
+                        android:text=">"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Container untuk halaman konten -->
+    <ScrollView
+        android:id="@+id/contentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="gone"
+        android:paddingTop="35dp">
+
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+</FrameLayout>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DEEPSPACE AR</string>
+    <!-- Judul header halaman Home (tetap nama pendek agar tidak menabrak logo/hamburger) -->
+    <string name="home_header_title">DEEPSPACE</string>
+    <string name="get_started">MULAI</string>
+    <string name="xr">AR Studio</string>
+    <string name="library">Proyek</string>
+    <string name="menu">Menu</string>
+    <string name="settings_menu">Menu Pengaturan</string>
+    <string name="settings_general">Umum</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_about">Tentang</string>
+    <string name="settings_page_title">Pengaturan</string>
+    <string name="drawer_xr">Augmented Reality</string>
+    <string name="drawer_library">Jelajahi</string>
+    <string name="drawer_project">Proyek</string>
+    <string name="drawer_setting">Pengaturan</string>
+    <string name="ar_menu_anchor">Kunci</string>
+    <string name="loading_model">Memuat Model...</string>
+    <string name="model_loaded">Model dimuat</string>
+    <string name="menu_save">Simpan</string>
+    <string name="menu_save_project">Simpan Proyek</string>
+    <string name="project_save_failed">Gagal menyimpan proyek</string>
+
+    <!-- Settings Menu -->
+    <string name="settings">Pengaturan</string>
+    <string name="upgrade_to_pro">Upgrade ke Pro</string>
+    <string name="learning">Pembelajaran</string>
+    <string name="share_apps">Bagikan Aplikasi</string>
+    <string name="feedback">Masukan</string>
+    <string name="report_bug">Laporkan Bug</string>
+    <string name="privacy_policy">Kebijakan Privasi</string>
+    <string name="about">Tentang</string>
+
+    <!-- General Settings -->
+    <string name="apps_settings">Pengaturan Aplikasi</string>
+    <string name="dark_mode">Mode Gelap</string>
+    <!-- Item Orientation Mode (AR): dropdown Portrait/Landscape untuk halaman AR -->
+    <string name="orientation_mode">Mode Orientasi (AR)</string>
+    <string name="orientation_portrait">Potret</string>
+    <string name="orientation_landscape">Lanskap</string>
+    <string name="performance_mode">Mode Kinerja</string>
+    <string name="auto_save">Simpan Otomatis</string>
+    <string name="language">Bahasa</string>
+    <string name="floor_grid">Floor Grid</string>
+    <string name="axis">Sumbu</string>
+    <string name="unit">Satuan</string>
+
+    <!-- CAD Group -->
+    <string name="cad">CAD</string>
+    <string name="polygon">Polygon</string>
+
+    <!-- Home Screen -->
+    <string name="ar_title">AR</string>
+    <string name="explore_title">Jelajahi</string>
+    <string name="project_title">Proyek</string>
+
+    <!-- Share dialog -->
+    <string name="share_to_friends">Bagikan ke Teman</string>
+
+    <!-- Loading, Error -->
+    <string name="loading_model_dots">Memuat model…</string>
+    <string name="failed_load_model">Gagal memuat model</string>
+    <string name="retry">Coba Lagi</string>
+
+    <!-- Explore catalog (metadata.json) -->
+    <string name="ok">OK</string>
+    <string name="error_title">Galat</string>
+    <string name="explore_search_hint">Cari 3D Model</string>
+    <string name="explore_error_network">Tidak dapat terhubung ke server Explore. Periksa koneksi internet lalu coba lagi.</string>
+    <string name="explore_error_server">Server Explore mengembalikan galat (HTTP %1$s).</string>
+    <string name="explore_error_parse">Katalog Explore (metadata.json) tidak dapat dibaca.</string>
+    <string name="explore_error_empty">Katalog Explore tidak berisi model apa pun.</string>
+    <string name="explore_error_thumbnail">Sebagian thumbnail model gagal dimuat dari server.</string>
+    <string name="explore_error_download">Gagal mengunduh file model dari server.</string>
+    <string name="explore_error_no_object">Model ini tidak menyediakan file 3D untuk diunduh.</string>
+    <string name="explore_error_folder">Model sudah terunduh tetapi gagal disimpan ke folder tujuan.</string>
+    <!-- Popup "Download": menyimpan file 3D (bukan thumbnail) ke folder pilihan pengguna -->
+    <string name="explore_download_title">Unduh</string>
+    <string name="explore_download_confirm">Unduh</string>
+    <string name="explore_download_browse">Telusuri</string>
+    <string name="explore_download_file_label">Berkas: %1$s</string>
+    <string name="explore_download_folder_none">Folder: belum dipilih</string>
+    <string name="explore_download_folder_label">Folder: %1$s</string>
+    <string name="explore_download_pick_folder">Pilih folder tujuan terlebih dahulu.</string>
+    <string name="explore_download_saved_file">Tersimpan: %1$s</string>
+
+    <!-- Popup "Capture" halaman AR: pilih folder tujuan simpan hasil capture -->
+    <string name="capture_title">Capture</string>
+    <string name="capture_confirm">Capture</string>
+    <string name="capture_browse">Telusuri</string>
+    <string name="capture_saved_file">Tersimpan: %1$s</string>
+    <string name="capture_folder_failed">Hasil capture gagal disimpan ke folder pilihan.</string>
+
+    <!-- Lighting panel -->
+    <string name="lighting_controls">Kontrol Pencahayaan</string>
+    <string name="shadow">Bayangan</string>
+    <string name="cancel">Batal</string>
+    <string name="apply">Terapkan</string>
+
+    <!-- Document menu -->
+    <string name="add_object">Tambah Objek:</string>
+    <string name="local">Lokal</string>
+    <string name="explore">Jelajahi</string>
+
+    <!-- Toast -->
+    <string name="performance_on">Mode Kinerja: AKTIF</string>
+    <string name="performance_off">Mode Kinerja: MATI</string>
+    <string name="no_email_app">Tidak ada aplikasi email</string>
+    <string name="no_browser">Tidak dapat membuka browser</string>
+    <string name="app_not_installed">%s tidak terinstal</string>
+
+    <!-- Email subjects -->
+    <string name="feedback_subject">Masukan - DeepSpace</string>
+    <string name="bug_subject">Laporan Bug - DeepSpace</string>
+    <string name="feedback_body">Silakan bagikan masukan Anda:\n\n</string>
+    <string name="bug_body">Silakan jelaskan bug:\n\n</string>
+
+    <!-- Unit options -->
+    <string-array name="unit_options">
+        <item>mm</item>
+        <item>cm</item>
+        <item>m</item>
+        <item>inch</item>
+    </string-array>
+
+    <!-- Language options -->
+    <string-array name="languages">
+        <item>English</item>
+        <item>Indonesia</item>
+    </string-array>
+
+    <!-- Opsi orientasi halaman AR: index 0 = Portrait, 1 = Landscape -->
+    <string-array name="orientation_options">
+        <item>Potret</item>
+        <item>Lanskap</item>
+    </string-array>
+</resources>

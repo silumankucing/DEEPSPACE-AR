@@ -1,0 +1,31 @@
+<resources>
+    <color name="blue_dark_primary">#2F7FB0</color>
+    <color name="blue_dark_primary_variant">#246A97</color>
+    <color name="blue_dark_secondary">#3D93C8</color>
+    <color name="blue_dark_secondary_variant">#2D79AE</color>
+    <color name="blue_surface">#BBDEFB</color>
+    <color name="blue_background">#E3F2FD</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#888888</color>
+    <color name="orange">#FF9800</color>
+    <color name="white_alpha_30">#4DFFFFFF</color>
+    <color name="freeform_background">#F5F5F5</color>
+
+    <!-- 🌙 Dark Mode Colors (dark grey, bukan hitam) -->
+    <color name="dark_background">#1A1A1A</color>
+    <color name="dark_surface">#262626</color>
+    <color name="dark_surface_variant">#2E2E2E</color>
+    <color name="dark_on_background">#E0E0E0</color>
+    <color name="dark_on_surface">#FFFFFF</color>
+    <color name="dark_divider">#3A3A3A</color>
+    <color name="dark_dialog_bg">#2D2D2D</color>
+    <color name="dark_disabled_text">#6B6B6B</color>
+    <color name="dark_blue_primary">#1B5E8A</color>
+    <color name="dark_blue_secondary">#2D6B96</color>
+    <color name="dark_text_secondary">#A0A0A0</color>
+
+    <!-- Scrim untuk overlay loading/error; punya varian night di values-night/colors.xml -->
+    <color name="scrim_overlay">#CCFFFFFF</color>
+</resources>
+
