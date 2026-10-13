@@ -53,6 +53,16 @@ class AR_Activity : BaseFullscreenActivity() {
         const val PREF_AR_ORIENTATION = "ar_orientation"
         const val ORIENTATION_PORTRAIT = "portrait"
         const val ORIENTATION_LANDSCAPE = "landscape"
+
+        /**
+         * Sumbu yang diatur oleh slider Panel Lighting ([setupLightingPanel]): tiga pertama
+         * adalah komponen arah (pergeseran) cahaya dan yang terakhir tingkat brightness.
+         * Nilainya juga dipakai sebagai indeks [lightDirection] untuk x/y/z.
+         */
+        private const val LIGHT_AXIS_X = 0
+        private const val LIGHT_AXIS_Y = 1
+        private const val LIGHT_AXIS_Z = 2
+        private const val LIGHT_AXIS_BRIGHTNESS = 3
     }
 
     private lateinit var filamentSurface: android.view.SurfaceView
@@ -112,6 +122,20 @@ class AR_Activity : BaseFullscreenActivity() {
     private val lineColor = android.graphics.Color.parseColor("#3D93C8")
     private val highlightColor = android.graphics.Color.parseColor("#E65100")
     private val highlightAlphaColor = android.graphics.Color.argb(60, 230, 81, 0)
+
+    // ─── Panel Lighting (pengganti popup Lighting) ───
+    private lateinit var lightingPanel: LinearLayout
+    private lateinit var lightingSlider: SeekBar
+    private lateinit var lightingValueLabel: TextView
+    private var lightingAxisButtons: List<Button> = emptyList()
+    /** Sumbu yang sedang diatur slider (salah satu konstanta `LIGHT_AXIS_*`). */
+    private var lightingAxis = LIGHT_AXIS_X
+    /** Arah cahaya mentah (belum dinormalisasi) dari slider x/y/z; default = arah utama. */
+    private val lightDirection = floatArrayOf(0.5f, -1f, -0.8f)
+    /** Skala intensitas (1f = default) dari slider b. */
+    private var lightIntensityScale = 1f
+    private val lightingButtonColor = android.graphics.Color.parseColor("#3D93C8")
+    private val lightingButtonActiveColor = android.graphics.Color.parseColor("#FF6B35")
 
     // Stabilize state
     private var isStabilizeActive = false
@@ -187,7 +211,7 @@ class AR_Activity : BaseFullscreenActivity() {
         btnDocument.setOnClickListener { showDocumentMenuPopup() }
 
         setupFilament()
-
+        setupLightingPanel()
         autoSaveJob = AutoSaveManager.schedule(this) { saveArProject(false) }
 
         // Buka file proyek yang diteruskan dari halaman lain (mis. CAD Part -> AR)
@@ -1609,7 +1633,7 @@ class AR_Activity : BaseFullscreenActivity() {
               val selected = items[position]
               dialog.dismiss()
               when (selected.id) {
-                  1 -> showLightingPopup()
+                  1 -> toggleLightingPanel()
                   2 -> {
                       if (selectedTreeIndex >= 0 && selectedTreeIndex < treeNodeNames.size) {
                           val (name, _) = treeNodeNames[selectedTreeIndex]
@@ -1779,81 +1803,109 @@ class AR_Activity : BaseFullscreenActivity() {
             }
         }
 
-    /** Popup Lighting: arah cahaya X/Y/Z + Brightness. */
-    private fun showLightingPopup() {
-        val dialog = android.app.Dialog(this)
+    /**
+     * Panel **Lighting** halaman AR (item Lighting pada menu AR) — pengganti popup Lighting
+     * lama yang memakai empat slider. Susunannya sekarang:
+     *  - **1 slider** ([lightingSlider]) yang mengatur parameter tombol sumbu yang aktif,
+     *  - tombol lingkaran biru bertulisan putih **x / y / z** untuk pergeseran arah cahaya, dan
+     *  - tombol **b** untuk tingkat **brightness**.
+     *
+     * Tombol aktif ditandai warna orange dan nilai sumbu aktif ditampilkan pada
+     * [lightingValueLabel], jadi satu slider cukup untuk keempat parameter.
+     */
+    private fun setupLightingPanel() {
+        lightingPanel = findViewById(R.id.lightingPanel)
+        lightingSlider = findViewById(R.id.lightingSlider)
+        lightingValueLabel = findViewById(R.id.txtLightingValue)
+        lightingAxisButtons = listOf(
+            R.id.btnLightAxisX,
+            R.id.btnLightAxisY,
+            R.id.btnLightAxisZ,
+            R.id.btnLightAxisB
+        ).map { findViewById<Button>(it) }
 
-        val ll = android.widget.LinearLayout(this).apply {
-            orientation = android.widget.LinearLayout.VERTICAL
-            setPadding(dpToPx(24), dpToPx(24), dpToPx(24), dpToPx(24))
-            gravity = android.view.Gravity.CENTER
+        // Warna slider memakai aksen biru (sama dengan tombol sumbu), bukan hitam, supaya
+        // tetap terbaca pada panel yang latarnya mengikuti dark/light mode.
+        lightingSlider.thumbTintList = android.content.res.ColorStateList.valueOf(lightingButtonColor)
+        lightingSlider.progressTintList = android.content.res.ColorStateList.valueOf(lightingButtonColor)
+        lightingSlider.progressBackgroundTintList = android.content.res.ColorStateList.valueOf(
+            android.graphics.Color.argb(77, 61, 147, 200))
 
-            addView(android.widget.TextView(this@AR_Activity).apply {
-                text = "Lighting"
-                textSize = 16f
-                gravity = android.view.Gravity.CENTER
-                setTextColor(themeTextPrimaryColor())
-                layoutParams = android.widget.LinearLayout.LayoutParams(
-                    android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-                    android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
-                ).also { it.bottomMargin = dpToPx(16) }
-            })
+        lightingAxisButtons.forEachIndexed { axis, button ->
+            button.setOnClickListener { selectLightingAxis(axis) }
         }
-
-        fun sliderRow(label: String, initial: Int, onChange: (Int) -> Unit) {
-            ll.addView(android.widget.TextView(this).apply {
-                text = label
-                textSize = 13f
-                setTextColor(themeTextPrimaryColor())
-            })
-            ll.addView(android.widget.SeekBar(this).apply {
-                max = 100
-                progress = initial
-                thumbTintList = android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#3D93C8"))
-                progressTintList = android.content.res.ColorStateList.valueOf(android.graphics.Color.BLACK)
-                progressBackgroundTintList = android.content.res.ColorStateList.valueOf(android.graphics.Color.BLACK)
-                setOnSeekBarChangeListener(object : android.widget.SeekBar.OnSeekBarChangeListener {
-                    override fun onProgressChanged(sb: android.widget.SeekBar?, progress: Int, fromUser: Boolean) {
-                        onChange(progress)
-                    }
-                    override fun onStartTrackingTouch(sb: android.widget.SeekBar?) {}
-                    override fun onStopTrackingTouch(sb: android.widget.SeekBar?) {}
-                })
-            })
-        }
-
-        // Arah cahaya: slider 0..100 dipetakan ke -1..1 (default = arah cahaya utama 0.5/-1/-0.8).
-        fun toComponent(progress: Int) = (progress / 100f) * 2f - 1f
-        var dx = 0.5f; var dy = -1f; var dz = -0.8f
-        sliderRow("X", 75) { dx = toComponent(it); arRenderer?.setLightDirection(dx, dy, dz) }
-        sliderRow("Y", 0) { dy = toComponent(it); arRenderer?.setLightDirection(dx, dy, dz) }
-        sliderRow("Z", 10) { dz = toComponent(it); arRenderer?.setLightDirection(dx, dy, dz) }
-        // Brightness: skala intensitas (50 = setengah, 100 = default).
-        sliderRow("Brightness", 100) { arRenderer?.setLightIntensityScale(it / 100f) }
-
-        ll.addView(android.widget.Button(this).apply {
-            text = "OK"
-            textSize = 14f
-            setTextColor(android.graphics.Color.WHITE)
-            background = android.graphics.drawable.GradientDrawable().apply {
-                cornerRadius = dpToPx(12).toFloat()
-                setColor(android.graphics.Color.parseColor("#3D93C8"))
+        lightingSlider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                applyLightingProgress(progress)
             }
-            layoutParams = android.widget.LinearLayout.LayoutParams(dpToPx(120), dpToPx(44)).also {
-                it.topMargin = dpToPx(20)
-                it.gravity = android.view.Gravity.CENTER
-            }
-            setOnClickListener { dialog.dismiss() }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
 
-        dialog.setContentView(ll)
-        dialog.window?.setBackgroundDrawableResource(R.drawable.bg_render_menu_popup)
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.show()
-        dialog.window?.setLayout(
-            (resources.displayMetrics.widthPixels * 0.75f).toInt(),
-            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-        )
+        selectLightingAxis(LIGHT_AXIS_X)
+    }
+
+    /**
+     * Buka/tutup Panel Lighting. Saat dibuka, slider disegarkan ke sumbu yang terakhir dipakai
+     * supaya nilai pada panel selalu sesuai kondisi cahaya sekarang.
+     */
+    private fun toggleLightingPanel() {
+        if (lightingPanel.visibility == View.VISIBLE) {
+            lightingPanel.visibility = View.GONE
+            return
+        }
+        selectLightingAxis(lightingAxis)
+        lightingPanel.visibility = View.VISIBLE
+    }
+
+    /** Pilih parameter yang diatur slider: x / y / z (arah cahaya) atau b (brightness). */
+    private fun selectLightingAxis(axis: Int) {
+        lightingAxis = axis
+        lightingAxisButtons.forEachIndexed { index, button ->
+            val active = index == axis
+            button.isSelected = active
+            button.setTextColor(android.graphics.Color.WHITE)
+            // backgroundTintList (bukan setBackgroundColor) supaya bentuk MaterialShapeDrawable
+            // tetap bulat sesuai app:cornerRadius pada layout.
+            button.backgroundTintList = android.content.res.ColorStateList.valueOf(
+                if (active) lightingButtonActiveColor else lightingButtonColor)
+        }
+        lightingSlider.progress = lightingProgressFor(axis)
+        updateLightingValueLabel()
+    }
+
+    /** Nilai slider (0..100) yang mewakili state sumbu [axis] sekarang. */
+    private fun lightingProgressFor(axis: Int): Int =
+        if (axis == LIGHT_AXIS_BRIGHTNESS) Math.round(lightIntensityScale * 100f)
+        // Arah cahaya: -1..1 dipetakan ke 0..100.
+        else Math.round((lightDirection[axis] + 1f) / 2f * 100f)
+
+    /** Terapkan nilai slider (0..100) ke sumbu aktif lalu perbarui cahaya di renderer. */
+    private fun applyLightingProgress(progress: Int) {
+        if (lightingAxis == LIGHT_AXIS_BRIGHTNESS) {
+            // Brightness: skala intensitas (0 = padam, 100 = default seperti cahaya awal).
+            lightIntensityScale = progress / 100f
+            arRenderer?.setLightIntensityScale(lightIntensityScale)
+        } else {
+            lightDirection[lightingAxis] = (progress / 100f) * 2f - 1f
+            arRenderer?.setLightDirection(
+                lightDirection[LIGHT_AXIS_X],
+                lightDirection[LIGHT_AXIS_Y],
+                lightDirection[LIGHT_AXIS_Z]
+            )
+        }
+        updateLightingValueLabel()
+    }
+
+    /** Nilai sumbu aktif pada header panel, mis. `x +0.50` atau `b 100%`. */
+    private fun updateLightingValueLabel() {
+        val name = lightingAxisButtons.getOrNull(lightingAxis)?.text?.toString() ?: ""
+        val value = if (lightingAxis == LIGHT_AXIS_BRIGHTNESS)
+            "${Math.round(lightIntensityScale * 100f)}%"
+        else String.format(java.util.Locale.US, "%+.2f", lightDirection[lightingAxis])
+        lightingValueLabel.text = "$name $value"
     }
 
     /**

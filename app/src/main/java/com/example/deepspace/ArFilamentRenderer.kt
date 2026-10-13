@@ -100,9 +100,12 @@ class ArFilamentRenderer(private val surfaceView: SurfaceView) {
         SavedLight(floatArrayOf(0.5f, -1.0f, -0.8f), floatArrayOf(1.0f, 0.98f, 0.95f), 90_000.0f, false),
         SavedLight(floatArrayOf(-0.3f, 1.0f, 0.4f), floatArrayOf(0.6f, 0.65f, 0.8f), 35_000.0f, false)
     )
-    // Entity cahaya yang sudah dibuat + skala intensitas saat ini (untuk slider Lighting).
+    // Entity cahaya yang sudah dibuat + skala intensitas saat ini (untuk Panel Lighting).
     private val lightEntities: MutableList<Int> = mutableListOf()
     private var currentIntensityScale = 1f
+    // Arah cahaya terakhir (ternormalisasi) dari Panel Lighting. Null = belum pernah diubah,
+    // jadi tiap light memakai arah bawaannya sendiri ([savedLights]).
+    private var currentDirection: FloatArray? = null
 
     private val choreographer = Choreographer.getInstance()
     private val frameCallback = object : Choreographer.FrameCallback {
@@ -195,13 +198,16 @@ class ArFilamentRenderer(private val surfaceView: SurfaceView) {
     /** Set arah cahaya (dinormalisasi) untuk semua directional light. */
     fun setLightDirection(x: Float, y: Float, z: Float) {
         val len = kotlin.math.sqrt(x * x + y * y + z * z).coerceAtLeast(1e-6f)
-        rebuildLights(floatArrayOf(x / len, y / len, z / len), currentIntensityScale)
+        // Arah diingat supaya mengubah brightness (Panel Lighting) tidak mengembalikan
+        // arah cahaya ke default.
+        currentDirection = floatArrayOf(x / len, y / len, z / len)
+        rebuildLights(currentDirection, currentIntensityScale)
     }
 
     /** Set skala intensitas (1f = default) untuk semua directional light. */
     fun setLightIntensityScale(scale: Float) {
         currentIntensityScale = scale
-        rebuildLights(null, scale)
+        rebuildLights(currentDirection, scale)
     }
 
     /** Buat ulang semua directional light dengan arah/skala intensitas terbaru. */
