@@ -1810,6 +1810,10 @@ class AR_Activity : BaseFullscreenActivity() {
      *  - tombol lingkaran biru bertulisan putih **x / y / z** untuk pergeseran arah cahaya, dan
      *  - tombol **b** untuk tingkat **brightness**.
      *
+     * Slider dan keempat tombol berada dalam **satu baris horisontal** (`lightingAxisRow` pada
+     * activity_ar.xml): tombol x/y/z/b rapat ke kanan dengan ukuran tetap, sedangkan slider
+     * memakai `layout_weight="1"` sehingga selalu sejajar dan mengisi sisa lebar panel.
+     *
      * Tombol aktif ditandai warna orange dan nilai sumbu aktif ditampilkan pada
      * [lightingValueLabel], jadi satu slider cukup untuk keempat parameter.
      */

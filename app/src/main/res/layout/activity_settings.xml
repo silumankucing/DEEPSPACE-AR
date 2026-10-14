@@ -74,9 +74,10 @@
                 <LinearLayout
                     android:id="@+id/darkModeContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/settings_row_height"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/settings_row_height"
                     android:orientation="horizontal"
-                    android:paddingVertical="8dp"
+                    android:paddingVertical="4dp"
                     android:paddingHorizontal="16dp"
                     android:gravity="center_vertical">
                     <TextView
@@ -100,7 +101,8 @@
                 <LinearLayout
                     android:id="@+id/languageContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/settings_row_height"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/settings_row_height"
                     android:orientation="horizontal"
                     android:paddingVertical="8dp"
                     android:paddingHorizontal="16dp"
@@ -125,11 +127,12 @@
 
                 <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/grey" />
 
-                <!-- Orientation Mode (AR): dropdown Portrait/Landscape yang dipakai halaman AR. -->
+                <!-- Orientation Mode: dropdown Portrait/Landscape yang dipakai halaman AR. -->
                 <LinearLayout
                     android:id="@+id/orientationContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/settings_row_height"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/settings_row_height"
                     android:orientation="horizontal"
                     android:paddingVertical="8dp"
                     android:paddingHorizontal="16dp"
@@ -159,6 +162,7 @@
                     android:id="@+id/menuLearning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="@dimen/settings_row_height"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     android:background="?attr/selectableItemBackground"
@@ -187,6 +191,7 @@
                     android:id="@+id/menuShareApps"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="@dimen/settings_row_height"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     android:background="?attr/selectableItemBackground"
@@ -215,6 +220,7 @@
                     android:id="@+id/menuFeedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="@dimen/settings_row_height"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     android:background="?attr/selectableItemBackground"
@@ -243,6 +249,7 @@
                     android:id="@+id/menuReportBug"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="@dimen/settings_row_height"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     android:background="?attr/selectableItemBackground"
@@ -271,6 +278,7 @@
                     android:id="@+id/menuPrivacyPolicy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="@dimen/settings_row_height"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     android:background="?attr/selectableItemBackground"
@@ -299,6 +307,7 @@
                     android:id="@+id/menuAbout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="@dimen/settings_row_height"
                     android:orientation="horizontal"
                     android:padding="16dp"
                     android:background="?attr/selectableItemBackground"
@@ -324,23 +333,6 @@
 
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-
-    <!-- Container untuk halaman konten -->
-    <ScrollView
-        android:id="@+id/contentContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:visibility="gone"
-        android:paddingTop="35dp">
-
-        <LinearLayout
-            android:id="@+id/contentLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-
     </ScrollView>
 
 </FrameLayout>

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -14,18 +13,10 @@ import com.google.android.material.switchmaterial.SwitchMaterial
 
 class Settings_Activity : BaseFullscreenActivity() {
 
-    private lateinit var menuContainer: ScrollView
-    private lateinit var contentContainer: ScrollView
-    private lateinit var contentLayout: LinearLayout
-
         override fun onCreate(savedInstanceState: Bundle?) {
         LocaleUtils.applyLocale(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-
-        menuContainer = findViewById(R.id.menuContainer)
-        contentContainer = findViewById(R.id.contentContainer)
-        contentLayout = findViewById(R.id.contentLayout)
 
         // Item "General Settings" dihapus: isinya (Dark Mode, Language,
         // Orientation Mode) kini tampil langsung di daftar Setting di atas Learning.
@@ -46,32 +37,15 @@ class Settings_Activity : BaseFullscreenActivity() {
         menuShareApps.setOnClickListener { showShareAppsDialog() }
         menuFeedback.setOnClickListener { sendFeedbackEmail() }
         menuReportBug.setOnClickListener { sendBugReportEmail() }
-        menuAbout.setOnClickListener { showAboutPage() }
+        menuAbout.setOnClickListener { showAboutDialog() }
         menuPrivacyPolicy.setOnClickListener { openPrivacyPolicy() }
     }
 
     // ─── NAVIGASI ───
 
-    private fun showMenu() {
-        menuContainer.visibility = View.VISIBLE
-        contentContainer.visibility = View.GONE
-    }
-
-    private fun showContent(contentView: View) {
-        contentLayout.removeAllViews()
-        contentLayout.addView(contentView)
-        menuContainer.visibility = View.GONE
-        contentContainer.visibility = View.VISIBLE
-        contentContainer.scrollTo(0, 0)
-    }
-
-    override fun onBackPressed() {
-        if (contentContainer.visibility == View.VISIBLE) {
-            showMenu()
-        } else {
-            super.onBackPressed()
-        }
-    }
+    // Halaman About di dalam activity (contentContainer/contentLayout + showContent/
+    // showMenu) sudah dihapus: item About kini membuka popup sudut tajam
+    // showAboutDialog(). Back dari halaman Setting langsung kembali ke halaman AR.
 
     // ─── ITEM GENERAL (DARK MODE, LANGUAGE, ORIENTATION) ───
 
@@ -131,12 +105,35 @@ class Settings_Activity : BaseFullscreenActivity() {
         }
     }
 
-    // ─── HALAMAN ABOUT ───
+    // ─── POPUP ABOUT ───
 
-    private fun showAboutPage() {
-        val inflater = layoutInflater
-        val view = inflater.inflate(R.layout.activity_settings_about, contentLayout, false)
-        showContent(view)
+    /**
+     * Item **About** membuka popup (bukan halaman terpisah lagi) dengan sudut **tajam**
+     * ([R.drawable.bg_dialog_sharp]) berisi dua baris:
+     *  1. [R.string.about_app_version] → "DEEPSPACE AR v0.8.0"
+     *  2. [R.string.about_early_access] → "(Early Access)"
+     * Lebar popup dipatok 300dp (halaman Setting dikunci landscape); popup ditutup
+     * dengan tombol OK (lebarnya proporsional terhadap lebar popup) atau dengan
+     * menekan area di luar popup.
+     */
+    private fun showAboutDialog() {
+        val view = layoutInflater.inflate(R.layout.dialog_settings_about, null, false)
+
+        val dialog = android.app.AlertDialog.Builder(this)
+            .setView(view)
+            .create()
+
+        // Tombol OK menutup popup; efek tekan disamakan dengan item daftar Setting.
+        view.findViewById<android.widget.TextView>(R.id.btnAboutOk).apply {
+            setOnClickListener { dialog.dismiss() }
+            addClickEffect(this)
+        }
+
+        dialog.show()
+        dialog.window?.let { window ->
+            window.setBackgroundDrawableResource(R.drawable.bg_dialog_sharp)
+            window.setLayout(dpToPx(300), android.view.ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
     }
 
     // SHARE DIALOG

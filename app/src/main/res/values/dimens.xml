@@ -8,10 +8,17 @@
     <dimen name="design_navigation_item_padding">0dp</dimen>
     <!-- Padding top untuk TabLayout di Project & Explore agar tidak overlap kamera -->
     <dimen name="tab_layout_top_padding">30dp</dimen>
-    <!-- Tinggi seragam baris item Dark Mode / Brightness / Language / Orientation Mode
-         yang kini tampil langsung di halaman Setting (activity_settings.xml).
-         Nilai 64dp = touch target switch Material 48dp (?attr/minTouchTargetSize)
-         + padding vertikal 2 x 8dp. -->
-    <dimen name="settings_row_height">64dp</dimen>
+    <!-- Tinggi seragam SEMUA baris item halaman Setting (activity_settings.xml):
+         Dark Mode, Language, Orientation Mode, Learning, Share Apps, Feedback,
+         Report Bug, Privacy Policy, dan About memakai nilai ini sebagai `minHeight`.
+         Nilai 56dp membuat baris Language ikut seragam (sebelumnya 64dp sehingga
+         tampak lebih tinggi daripada item lain):
+           - baris switch  : switch Material 48dp + padding vertikal 2 x 4dp,
+           - baris spinner : spinner 24dp + padding vertikal 2 x 8dp,
+           - baris teks    : teks 18sp (tinggi ± 23,3dp) + padding 2 x 16dp.
+         Dipakai sebagai `minHeight` (bukan tinggi tetap) supaya baris tetap sama
+         tinggi pada font normal dan masih bisa tumbuh bila ukuran font sistem
+         diperbesar (aksesibilitas). -->
+    <dimen name="settings_row_height">56dp</dimen>
 </resources>
 

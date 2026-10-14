@@ -32,11 +32,17 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="about">About</string>
 
+    <!-- Isi popup About: nama aplikasi + versi, lalu status rilis. Sengaja tidak
+         diterjemahkan (nama aplikasi/versi sama di semua bahasa) sehingga values-in
+         memakai nilai default ini. -->
+    <string name="about_app_version">DEEPSPACE AR v0.8.0</string>
+    <string name="about_early_access">(Early Access)</string>
+
     <!-- General Settings -->
     <string name="apps_settings">Apps Settings</string>
     <string name="dark_mode">Dark Mode</string>
-    <!-- Item Orientation Mode (AR): dropdown Portrait/Landscape untuk halaman AR -->
-    <string name="orientation_mode">Orientation Mode (AR)</string>
+    <!-- Item Orientation Mode: dropdown Portrait/Landscape untuk halaman AR -->
+    <string name="orientation_mode">Orientation Mode</string>
     <string name="orientation_portrait">Portrait</string>
     <string name="orientation_landscape">Landscape</string>
     <string name="performance_mode">Performance Mode</string>

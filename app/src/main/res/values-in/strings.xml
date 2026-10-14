@@ -36,8 +36,8 @@
     <!-- General Settings -->
     <string name="apps_settings">Pengaturan Aplikasi</string>
     <string name="dark_mode">Mode Gelap</string>
-    <!-- Item Orientation Mode (AR): dropdown Portrait/Landscape untuk halaman AR -->
-    <string name="orientation_mode">Mode Orientasi (AR)</string>
+    <!-- Item Orientation Mode: dropdown Portrait/Landscape untuk halaman AR -->
+    <string name="orientation_mode">Mode Orientasi</string>
     <string name="orientation_portrait">Potret</string>
     <string name="orientation_landscape">Lanskap</string>
     <string name="performance_mode">Mode Kinerja</string>

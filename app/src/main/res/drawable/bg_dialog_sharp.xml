@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Latar popup About dengan sudut TAJAM (tanpa `<corners>` = radius 0), berbeda
+         dari bg_dialog_rounded_white.xml yang dipakai popup lain.
+         Ikut theme aktif (bukan `drawable-night`) agar sesuai toggle Dark Mode di Setting. -->
+    <solid android:color="?attr/colorSurface" />
+    <!-- Garis tipis warna sama dengan divider daftar Setting supaya tepi popup tetap
+         terlihat walau halaman Setting juga berlatar terang. -->
+    <stroke android:width="1dp" android:color="@color/grey" />
+</shape>

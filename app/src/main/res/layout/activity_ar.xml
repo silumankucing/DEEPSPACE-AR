@@ -101,16 +101,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Panel Lighting (pengganti popup Lighting): SATU slider untuk parameter yang
-             sedang dipilih + tombol lingkaran biru bertulisan putih
-             x / y / z (sumbu pergeseran cahaya) dan b (tingkat brightness).
+        <!-- Panel Lighting (pengganti popup Lighting): SATU slider (untuk parameter yang sedang
+             dipilih) yang disejajarkan HORISONTAL dalam satu baris dengan tombol lingkaran biru
+             bertulisan putih x / y / z (sumbu pergeseran cahaya) dan b (tingkat brightness).
              Tombol aktif ditandai warna orange; nilai sumbu aktif tampil di txtLightingValue.
-             Panel dibuka/ditutup dari item Lighting pada menu AR. -->
+             Panel dibuka/ditutup dari item Lighting pada menu AR dan diletakkan serendah mungkin
+             (di atas tombol Document/Menu 48dp + margin 16dp) agar keduanya tetap bisa ditekan.
+             Lebar panel maksimal 520dp dan di-center, jadi slider yang menyesuaikan lebar. -->
         <LinearLayout
             android:id="@+id/lightingPanel"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="76dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="68dp"
             android:background="@drawable/bg_render_menu_popup"
             android:clickable="true"
             android:elevation="6dp"
@@ -123,7 +127,8 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_max="520dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -150,27 +155,29 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <SeekBar
-                android:id="@+id/lightingSlider"
-                android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:max="100" />
-
+            <!-- Satu baris horizontal: slider mengisi sisa lebar (weight 1) dan tombol x/y/z/b
+                 rapat ke kanan, sehingga slider & keempat tombol selalu sejajar horisontal. -->
             <LinearLayout
                 android:id="@+id/lightingAxisRow"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="2dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/lightingSlider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minWidth="120dp"
+                    android:max="100" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLightAxisX"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:padding="0dp"
@@ -183,15 +190,14 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:backgroundTint="#3D93C8"
-                    app:cornerRadius="21dp"
+                    app:cornerRadius="20dp"
                     app:rippleColor="#80FFFFFF" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLightAxisY"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:padding="0dp"
@@ -204,15 +210,14 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:backgroundTint="#3D93C8"
-                    app:cornerRadius="21dp"
+                    app:cornerRadius="20dp"
                     app:rippleColor="#80FFFFFF" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLightAxisZ"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:padding="0dp"
@@ -225,15 +230,14 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:backgroundTint="#3D93C8"
-                    app:cornerRadius="21dp"
+                    app:cornerRadius="20dp"
                     app:rippleColor="#80FFFFFF" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLightAxisB"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:padding="0dp"
@@ -246,7 +250,7 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:backgroundTint="#3D93C8"
-                    app:cornerRadius="21dp"
+                    app:cornerRadius="20dp"
                     app:rippleColor="#80FFFFFF" />
             </LinearLayout>
         </LinearLayout>
